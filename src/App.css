@@ -2,37 +2,142 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav{
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  background-color: rgb(92, 92, 92);
+  height: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App-header{
+  grid-column-start: 2;
+  grid-column-end: 3;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content:space-evenly;
+  align-items:center;
 }
 
-.App-link {
-  color: #61dafb;
+a{ 
+  color: rgb(247, 247, 247);
+  text-decoration: none;
+  font-size: medium;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.product-card{
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
 }
+.Card-body{
+  margin-top: 10px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  background-color:aliceblue;
+}
+.form-field {
+  display: flex;
+  margin: 0 0 1rem 0;
+}
+label, input {
+  width: 50%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  justify-content:space-between;
+}
+label {
+  text-align: right;
+  width: 30%;
+}
+input {
+  border:none;
+  border-bottom: 2px solid rgb(140, 137, 137);
+  border-radius: 2px;
+  margin:10px;
+}
+.product-list-card{
+  display: grid;
+  grid-template-columns: 200px 800px 200px;
+}
+table {
+  margin-top: 10px;
+  border: 2px solid rgb(140 137 137);
+  letter-spacing: 1px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+tbody{
+  background-color:rgb(171, 170, 168);
+}
+thead{
+  background-color: rgb(92, 92, 92);;
+  height:50px;
+  color:aliceblue;
+}
+
+td{
+  text-align: center;
+} 
+
+.delete-button{
+  background-color: red;
+  color: whitesmoke;
+  margin:5px;
+  border-color: red;
+  padding: 3px;
+  border-radius: 3px;
+  cursor:pointer;
+}
+.success-button{
+  background-color: green;
+  color:whitesmoke;
+  margin:5px;
+  border-color: green;
+  padding: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.cart-section{
+  display: grid;
+  grid-template-columns: 700px 500px;
+}
+.added-product{
+  margin-top: 10px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+
+}
+.cart-summary{
+  margin-top: 10px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.card{
+  background-color: aliceblue;
+  margin: 80px;
+}
+.card div{
+  margin: 30px;
+}
+
+.card button{
+  border: 2px solid rgb(59, 58, 58);
+  background-color: white;
+  width:80px;
+  border-radius: 4px;
+  color: black;
+  margin-bottom: 30px;
+}
+.cart-product{
+  background-color: antiquewhite;
+  margin:5px 20px 5px 20px;
+  text-align: left;
+  padding:10px;
+  
+}
+.quantity label{
+  padding: 0px 10px 0px 0px;
+}
+
+
+
