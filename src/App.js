@@ -1,9 +1,9 @@
 import "./App.css";
-import Header from "./components/Header";
+import HeaderContainer from "./containers/HeaderContainer";
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import ProductListContainer from "./containers/ProductListContainer";
 import ProductFormContainer from "./containers/ProductFormContainer";
-import Cart from "./components/Cart";
+import CartContainer from "./containers/CartContainer";
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Header/>
+      <HeaderContainer/>
       <Routes>
           <Route
             path="/" 
@@ -24,7 +24,7 @@ function App() {
             element={<ProductListContainer />}
             />
           <Route
-            path="/cart" element={<Cart/>}
+            path="/cart" element={<CartContainer/>}
             
             />
       </Routes>

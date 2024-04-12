@@ -1,10 +1,24 @@
 
 import React from 'react';
 
-const ProductList = ({products, removeProduct}) => {
-    console.log('product',products);
+const ProductList = ({products, cartItems, removeProduct, addToCartHandler }) => {
+    // console.log('product',products);
     const handleDelete=(productId)=>{
       removeProduct(productId);
+    }
+
+    const handleAddToCart = (productId)=>{
+      const productToAdd = products.find((product) => product.id === productId);
+      if(productToAdd){
+        const isProductInCart = cartItems.some(product => product.id === productId);
+        if(!isProductInCart){
+          addToCartHandler(productToAdd);
+        }
+        else{
+          alert("Product is already present into the cart");
+        }
+      }
+
     }
   return (
     <div className='product-list-card'>
@@ -21,13 +35,13 @@ const ProductList = ({products, removeProduct}) => {
         <tbody>
           {products.map((product) => (
               <tr key={product.id}>
-                <td>{product.productName}</td>
-                <td>${product.price}</td>
-                <td>{product.description}</td>
-                <td>{product.category.value}</td>
+                <td>{product?.productName}</td>
+                <td>${product?.price}</td>
+                <td>{product?.description}</td>
+                <td>{product?.category?.value}</td>
                 <td>
                   <button className='delete-button' onClick={()=>handleDelete(product.id)}>Delete</button>
-                  <button className="success-button" >Add to Cart</button>
+                  <button className="success-button" onClick={()=> handleAddToCart(product.id)}>Add to Cart</button>
                 </td>
             </tr>
           ))}

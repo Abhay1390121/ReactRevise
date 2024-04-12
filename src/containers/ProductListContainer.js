@@ -8,6 +8,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 const mapStateToProps = (state) => ({
   products: state.products.product,
+  cartItems: state.cart.cartData,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

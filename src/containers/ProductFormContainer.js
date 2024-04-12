@@ -4,7 +4,7 @@ import { addProduct } from "../service/actions/action";
 
 const mapStateToProps = (state) => ({
   initialValues: {
-    id: Math.random().toString(20).slice(0, 5),
+    id: Math.random().toString(20).slice(2, 8),
   },
 });
 

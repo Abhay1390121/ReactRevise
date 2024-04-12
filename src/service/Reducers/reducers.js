@@ -12,7 +12,7 @@ export function cartItems(state=initialCartState, action){
         case ADD_TO_CART:
             return {
                 ...state,
-                cartData: action.data
+                cartData: [...state.cartData, action.data]
             }
             // break;
             default:

@@ -3,7 +3,7 @@ import {combineReducers} from "redux";
 import {reducer as formReducer} from "redux-form"
 
 export default combineReducers({
-    cartItems,
+    cart: cartItems,
     form:formReducer,
     products:productReducer
 });

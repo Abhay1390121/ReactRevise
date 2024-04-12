@@ -1,22 +1,17 @@
-const Cart = () =>{
-
-    const products = [
-        {id:1, name:'apple', price:2000, description:"iphone", category:"electronics" },
-        {id:2, name:'apple', price:1200, description:"iphone", category:"electronics" },
-       
-    ]
-
+import {useState} from 'react';
+const Cart = ({cartItems}) =>{
+  
     const payAmount  = () =>{
         alert("Amount paid");
     }
     return(
         <div className="cart-section">
             <div className="added-product">
-                {products.map((item) => (
+                {cartItems.map((item) => (
                 <div className="cart-product" key={item.id}>
-                    <h4>Product Name: {item.name}</h4>
+                    <h4>Product Name: {item.productName}</h4>
                     <div>Description: {item.description}</div>
-                    <div>Category: {item.category}</div>
+                    <div>Category: {item.category.value}</div>
                     <div>Price: ${item.price}</div>
                     <div className="quantity">
                         <label htmlFor="quantity">Quantity</label>

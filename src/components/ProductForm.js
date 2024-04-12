@@ -14,7 +14,7 @@ let ProductForm= (props) =>{
         { value: 'books', label: 'Books' },
       ];
       const generateRandomId = () => {
-        return Math.random().toString(20).slice(0, 5);
+        return Math.random().toString(20).slice(2, 8);
       };
     return(
         <form className="product-card" onSubmit={handleSubmit(onSubmit)} >
