@@ -2,7 +2,6 @@
 import React from 'react';
 
 const ProductList = ({products, cartItems, removeProduct, addToCartHandler }) => {
-    // console.log('product',products);
     const handleDelete=(productId)=>{
       removeProduct(productId);
     }
@@ -12,7 +11,9 @@ const ProductList = ({products, cartItems, removeProduct, addToCartHandler }) =>
       if(productToAdd){
         const isProductInCart = cartItems.some(product => product.id === productId);
         if(!isProductInCart){
+          productToAdd.quantity = 0;
           addToCartHandler(productToAdd);
+          alert("Product Added in cart");
         }
         else{
           alert("Product is already present into the cart");

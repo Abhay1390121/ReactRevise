@@ -68,3 +68,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+** Create basic shopping cart application that contains 3 pages :
+Functional
+1st Page -  Create product form (using redux - form and react-select library).
+2nd Page - List all products with their details like category and prices along with button to delete and add to cart.
+3rd Page -  Each product added in cart will be shown along with quantity 
+Cart page to have checkout section that shows total price.
+ 
+Technical
+1) Can use functional or class component (up to you)
+2)  form should be redux-form; dropdown filed should use react-select
+3)  Use connect method to integrate redux in component.**
