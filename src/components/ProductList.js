@@ -1,13 +1,11 @@
 
 import React from 'react';
 
-const ProductList = (props) => {
-  // console.warn(props);
-    const products = [
-        {id:1, name:'apple', price:2000, description:"iphone", category:"electronics" },
-        {id:2, name:'apple', price:1200, description:"iphone", category:"electronics" },
-       
-    ]
+const ProductList = ({products, removeProduct}) => {
+    console.log('product',products);
+    const handleDelete=(productId)=>{
+      removeProduct(productId);
+    }
   return (
     <div className='product-list-card'>
       <table>
@@ -23,13 +21,13 @@ const ProductList = (props) => {
         <tbody>
           {products.map((product) => (
               <tr key={product.id}>
-                <td>{product.name}</td>
+                <td>{product.productName}</td>
                 <td>${product.price}</td>
                 <td>{product.description}</td>
-                <td>{product.category}</td>
+                <td>{product.category.value}</td>
                 <td>
-                  <button className='delete-button'>Delete</button>
-                  <button className="success-button">Add to Cart</button>
+                  <button className='delete-button' onClick={()=>handleDelete(product.id)}>Delete</button>
+                  <button className="success-button" >Add to Cart</button>
                 </td>
             </tr>
           ))}

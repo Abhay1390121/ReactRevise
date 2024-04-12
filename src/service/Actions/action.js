@@ -1,4 +1,4 @@
-import {ADD_TO_CART, ADD_PRODUCT} from "../constants"
+import {ADD_TO_CART, ADD_PRODUCT, DELETE_PRODUCT} from "../constants"
 export const addToCart = (data) =>{
     return{
         type:ADD_TO_CART,
@@ -11,5 +11,12 @@ export const addProduct = (data) =>{
         type:ADD_PRODUCT,
         data: data
 
+    }
+}
+
+export const deleteProduct = (id)=>{
+    return{
+        type: DELETE_PRODUCT,
+        id:id
     }
 }

@@ -1,17 +1,15 @@
 import ProductForm from "../components/ProductForm";
-import {connect} from "react-redux";
-import { addProduct } from "../service/Actions/action";
+import { connect } from "react-redux";
+import { addProduct } from "../service/actions/action";
 
-const mapStateToProps=(state)=>({
-    initialValues: {
-        id: (Math.floor(Math.random()*1000)+1)
-      }
-})
+const mapStateToProps = (state) => ({
+  initialValues: {
+    id: Math.random().toString(20).slice(0, 5),
+  },
+});
 
-// const mapDispatchToProps = (dispatch) =>({
-//   submitFormHandler : data =>dispatch(addProduct(data))
-// })
+const mapDispatchToProps = (dispatch) => ({
+  submitFormHandler: (data) => dispatch(addProduct(data)),
+});
 
-
-
-export default connect(mapStateToProps)(ProductForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductForm);

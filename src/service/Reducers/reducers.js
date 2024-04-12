@@ -1,4 +1,4 @@
-import {ADD_TO_CART, ADD_PRODUCT} from "../constants"
+import {ADD_TO_CART, ADD_PRODUCT, DELETE_PRODUCT} from "../constants"
 const initialCartState={
     cartData:[]
 }
@@ -27,6 +27,11 @@ export const productReducer = (state=initialProductState, action) =>{
                 ...state,
                 product:[...state.product, action.data]
             };
+        case DELETE_PRODUCT:
+            return{
+                ...state,
+                product:state.product.filter((product)=>product.id !== action.id)
+            }; 
             default:
                 return state
     }

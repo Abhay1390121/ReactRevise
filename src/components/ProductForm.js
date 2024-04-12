@@ -1,9 +1,10 @@
 import { reduxForm, Field } from "redux-form";
 import Select from "react-select";
 let ProductForm= (props) =>{
-    const {handleSubmit, reset} = props;
+    const {handleSubmit, reset, submitFormHandler} = props;
+    
     const onSubmit = (values) =>{
-        console.log(values);
+        submitFormHandler(values);
         reset();
     }
 
@@ -13,7 +14,7 @@ let ProductForm= (props) =>{
         { value: 'books', label: 'Books' },
       ];
       const generateRandomId = () => {
-        return (Math.floor(Math.random()*1000)+1)
+        return Math.random().toString(20).slice(0, 5);
       };
     return(
         <form className="product-card" onSubmit={handleSubmit(onSubmit)} >

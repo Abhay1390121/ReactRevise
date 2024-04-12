@@ -5,7 +5,7 @@
 .nav{
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  background-color: rgb(92, 92, 92);
+  background-color: rgb(129, 180, 87);
   height: 50px;
 }
 
@@ -55,7 +55,7 @@ input {
 }
 .product-list-card{
   display: grid;
-  grid-template-columns: 200px 800px 200px;
+  grid-template-columns: 20% 60% 20%;
 }
 table {
   margin-top: 10px;
