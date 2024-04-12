@@ -1,9 +1,6 @@
-// import {useState} from 'react';
+import cartImage from "../assets/emptyCart.png";
 const Cart = ({cartItems, deleteFromCarthandler, updateProductQuantity}) =>{
   
-    // const [quantity, setQuantity] = useState({});
-    // console.log(quantity);
-
     const payAmount  = () =>{
         alert("Amount paid");
     }
@@ -14,8 +11,8 @@ const Cart = ({cartItems, deleteFromCarthandler, updateProductQuantity}) =>{
     const handleQuantityChange = (productId, newQuantity)=>{
         updateProductQuantity(productId, newQuantity);
     }
-    return(
-        <div className="cart-section">
+    return (!cartItems.length)?(<div><img className="cart-image" src={cartImage} alt={"empty cart"}/></div>):
+    (   <div className="cart-section">
             <div className="added-product">
                 {cartItems.map((item) => (
                 <div className="cart-product" key={item.id}>
@@ -27,6 +24,7 @@ const Cart = ({cartItems, deleteFromCarthandler, updateProductQuantity}) =>{
                         <label htmlFor="quantity">Quantity</label>
                         <input type="number" htmlFor="quanity" id="qunatity" 
                                 min={1} 
+                                value={item.quantity}
                                 onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))} ></input>
                         <button className="delete-button" onClick={()=>deleteFromCarthandler(item.id)} >Remove Product</button>
                     </div>

@@ -1,11 +1,15 @@
 import { reduxForm, Field } from "redux-form";
 import Select from "react-select";
+import {useNavigate} from 'react-router-dom'
 let ProductForm= (props) =>{
     const {handleSubmit, reset, submitFormHandler} = props;
+
+    const navigate = useNavigate();
     
     const onSubmit = (values) =>{
         submitFormHandler(values);
         reset();
+        setTimeout(() => navigate("/product-list"), 200);
     }
 
     const Categories = [

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const ProductList = ({products, cartItems, removeProduct, addToCartHandler }) => {
@@ -14,6 +13,7 @@ const ProductList = ({products, cartItems, removeProduct, addToCartHandler }) =>
           productToAdd.quantity = 0;
           addToCartHandler(productToAdd);
           alert("Product Added in cart");
+
         }
         else{
           alert("Product is already present into the cart");
