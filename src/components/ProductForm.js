@@ -3,7 +3,7 @@ import Select from "react-select";
 import {useNavigate} from 'react-router-dom'
 let ProductForm= (props) =>{
     const {handleSubmit, reset, submitFormHandler} = props;
-
+    //Using usenavigate Hooks for the navigation
     const navigate = useNavigate();
     
     const onSubmit = (values) =>{
@@ -17,6 +17,7 @@ let ProductForm= (props) =>{
         { value: 'clothing', label: 'Clothing' },
         { value: 'books', label: 'Books' },
       ];
+      //This function will generate random values.
       const generateRandomId = () => {
         return Math.random().toString(20).slice(2, 8);
       };

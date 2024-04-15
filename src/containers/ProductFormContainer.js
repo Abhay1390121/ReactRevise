@@ -1,6 +1,6 @@
 import ProductForm from "../components/ProductForm";
 import { connect } from "react-redux";
-import { addProduct } from "../service/actions/action";
+import { addProduct } from "../service/Actions/action";
 
 const mapStateToProps = (state) => ({
   initialValues: {
