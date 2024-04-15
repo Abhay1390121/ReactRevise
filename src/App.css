@@ -99,7 +99,7 @@ td{
 
 .cart-section{
   display: grid;
-  grid-template-columns: 700px 500px;
+  grid-template-columns: 60% 40%;
 }
 .added-product{
   margin-top: 10px;

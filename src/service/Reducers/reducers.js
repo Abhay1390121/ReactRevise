@@ -1,12 +1,17 @@
 import {ADD_TO_CART, ADD_PRODUCT, DELETE_PRODUCT, DELETE_FROM_CART, UPDATE_QUANTITY} from "../constants"
+
+//initial state of cartdata in redux store.
 const initialCartState={
     cartData:[]
 }
 
+// initial state of product list in redux store.
 const initialProductState = {
     product:[]
 }
 
+// Reducer to do operation on cart: take two parameter initial state of store and action.
+// Based on action type it update and return updated state.
 export function cartItems(state=initialCartState, action){
     switch(action.type){
         case ADD_TO_CART:
@@ -34,6 +39,8 @@ export function cartItems(state=initialCartState, action){
     }
 }
 
+
+// Reducer to do operation on cart: take two parameter initial state of store and action.
 export const productReducer = (state=initialProductState, action) =>{
     switch(action.type){
         case ADD_PRODUCT:

@@ -1,6 +1,6 @@
 import cartImage from "../assets/emptyCart.png";
-const Cart = ({cartItems, deleteFromCarthandler, updateProductQuantity}) =>{
-  
+const Cart = (props) =>{
+    const{cartItems, deleteFromCarthandler, updateProductQuantity} = props;
     const payAmount  = () =>{
         alert("Amount paid");
     }

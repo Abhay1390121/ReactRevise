@@ -1,16 +1,11 @@
 import {ADD_TO_CART, ADD_PRODUCT, DELETE_PRODUCT, DELETE_FROM_CART, UPDATE_QUANTITY} from "../constants"
-export const addToCart = (data) =>{
-    return{
-        type:ADD_TO_CART,
-        data:data
-    }
-}
 
+// Actions that will take a parameter and returns action type and payload.
 export const addProduct = (data) =>{
     return {
         type:ADD_PRODUCT,
         data: data
-
+        
     }
 }
 
@@ -18,6 +13,12 @@ export const deleteProduct = (id)=>{
     return{
         type: DELETE_PRODUCT,
         id:id
+    }
+}
+export const addToCart = (data) =>{
+    return{
+        type:ADD_TO_CART,
+        data:data
     }
 }
 

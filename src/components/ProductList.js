@@ -1,6 +1,7 @@
 import React from 'react';
 
-const ProductList = ({products, cartItems, removeProduct, addToCartHandler }) => {
+const ProductList = (props) => {
+  const {products, cartItems, removeProduct, addToCartHandler }=props;
     const handleDelete=(productId)=>{
       removeProduct(productId);
     }
