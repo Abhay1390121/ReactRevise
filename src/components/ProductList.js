@@ -1,17 +1,20 @@
 import React from 'react';
 
 const ProductList = (props) => {
+
   const {products, cartItems, removeProduct, addToCartHandler }=props;
+
     const handleDelete=(productId)=>{
       removeProduct(productId);
     }
-
+    // Add to cart handler, takes productId and add this product into the cart.
     const handleAddToCart = (productId)=>{
+      // Find the product form store based on the productId return that product
       const productToAdd = products.find((product) => product.id === productId);
       if(productToAdd){
+        //Check wether product is already in cart or not.
         const isProductInCart = cartItems.some(product => product.id === productId);
         if(!isProductInCart){
-          productToAdd.quantity = 0;
           addToCartHandler(productToAdd);
           alert("Product Added in cart");
 

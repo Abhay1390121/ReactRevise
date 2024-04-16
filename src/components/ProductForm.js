@@ -2,13 +2,15 @@ import { reduxForm, Field } from "redux-form";
 import Select from "react-select";
 import {useNavigate} from 'react-router-dom'
 let ProductForm= (props) =>{
-    const {handleSubmit, reset, submitFormHandler} = props;
+    const {handleSubmit, reset, submitFormHandler, change} = props;
+
     //Using usenavigate Hooks for the navigation
     const navigate = useNavigate();
     
     const onSubmit = (values) =>{
         submitFormHandler(values);
         reset();
+        change('id', generateRandomId())
         setTimeout(() => navigate("/product-list"), 200);
     }
 
@@ -17,15 +19,16 @@ let ProductForm= (props) =>{
         { value: 'clothing', label: 'Clothing' },
         { value: 'books', label: 'Books' },
       ];
+
       //This function will generate random values.
       const generateRandomId = () => {
         return Math.random().toString(20).slice(2, 8);
       };
+
     return(
         <form className="product-card" onSubmit={handleSubmit(onSubmit)} >
             <div className="Card-body">
                 <h1>Create Product</h1>
-                    <Field name="id" component="input" type="hidden" value={generateRandomId()}/>
                 <div className="form-field">
                     <label htmlFor="productName">Product Name</label>
                     <Field name="productName" component="input" type="text" />

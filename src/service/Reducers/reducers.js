@@ -17,7 +17,7 @@ export function cartItems(state=initialCartState, action){
         case ADD_TO_CART:
             return {
                 ...state,
-                cartData: [...state.cartData, action.data]
+                cartData: [...state.cartData, {...action.data, quantity:1}]
             }
         case DELETE_FROM_CART:
             return{
