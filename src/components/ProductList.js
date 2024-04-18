@@ -1,4 +1,5 @@
 import React from 'react';
+import {FaTrash, FaEdit, FaCartPlus} from "react-icons/fa"
 
 const ProductList = (props) => {
 
@@ -7,6 +8,7 @@ const ProductList = (props) => {
     const handleDelete=(productId)=>{
       removeProduct(productId);
     }
+    
     // Add to cart handler, takes productId and add this product into the cart.
     const handleAddToCart = (productId)=>{
       // Find the product form store based on the productId return that product
@@ -45,8 +47,9 @@ const ProductList = (props) => {
                 <td>{product?.description}</td>
                 <td>{product?.category?.value}</td>
                 <td>
-                  <button className='delete-button' onClick={()=>handleDelete(product.id)}>Delete</button>
-                  <button className="success-button" onClick={()=> handleAddToCart(product.id)}>Add to Cart</button>
+                  <FaEdit className='edit-product-icon'/>
+                  <FaTrash className='delete-icon' onClick={()=>handleDelete(product.id)}/>
+                  <FaCartPlus className='add-to-cart-icon' onClick={()=> handleAddToCart(product.id)}/>
                 </td>
             </tr>
           ))}

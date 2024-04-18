@@ -1,6 +1,6 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 .nav{
   display: grid;
@@ -27,18 +27,43 @@ a{
   display: grid;
   grid-template-columns: 20% 60% 20%;
 }
-.Card-body{
+.card-body{
   margin-top: 10px;
   grid-column-start: 2;
   grid-column-end: 3;
   background-color:aliceblue;
 }
+.card-body h1{
+  text-align: center;
+  margin: 10px 0 10px 0;
+  color: rgb(82, 80, 80);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 .form-field {
   display: flex;
   margin: 0 0 1rem 0;
+  width: 90%;
+}
+.form-field-input{
+  width:50%;
+  margin: 10px;
+}
+.error{
+  text-align: left;
+  color: rgb(204, 66, 66);
+  margin:3px 0 0 5px
+}
+.form-button{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+input:focus{
+  border-color: rgba(0, 0, 255, 0.2); 
+  outline: none;
 }
 label, input {
-  width: 50%;
+  width: 100%;
   padding: 0.5rem;
   box-sizing: border-box;
   justify-content:space-between;
@@ -46,12 +71,13 @@ label, input {
 label {
   text-align: right;
   width: 30%;
+  margin:10px;
 }
 input {
   border:none;
-  border-bottom: 2px solid rgb(140, 137, 137);
+  border-bottom: 2px solid rgb(140, 137, 137);  
   border-radius: 2px;
-  margin:10px;
+
 }
 .product-list-card{
   display: grid;
@@ -78,15 +104,6 @@ td{
   text-align: center;
 } 
 
-.delete-button{
-  background-color: red;
-  color: whitesmoke;
-  margin:5px;
-  border-color: red;
-  padding: 3px;
-  border-radius: 3px;
-  cursor:pointer;
-}
 .success-button{
   background-color: green;
   color:whitesmoke;
@@ -96,10 +113,15 @@ td{
   border-radius: 3px;
   cursor: pointer;
 }
+.success-button[disabled]{
+  background-color: lightgreen;
+  cursor:not-allowed;
+  border-color: lightgreen;
+}
 
 .cart-section{
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 50% 50%;
 }
 .added-product{
   margin-top: 10px;
@@ -111,17 +133,23 @@ td{
   margin-top: 10px;
   grid-column-start: 2;
   grid-column-end: 3;
+  text-align: center;
 }
 
-.card{
+.cart-summary-card{
   background-color: aliceblue;
   margin: 80px;
 }
-.card div{
+.cart-summary-card div{
   margin: 30px;
 }
+.cart-summary-card h1{
+  text-align: center;
+  color: rgb(82, 80, 80);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 
-.card button{
+.cart-summary-card button{
   border: 2px solid rgb(59, 58, 58);
   background-color: white;
   width:80px;
@@ -136,13 +164,51 @@ td{
   padding:10px;
   
 }
+.quantity{
+  display: flex;
+  width: 80%;
+}
+
 .quantity label{
-  padding: 0px 10px 0px 0px;
+  text-align: left;
+  margin: 10px 10px 10px 0px;
+  padding: 0px;
+  width: auto;
+}
+.quantity input{
+  height:auto;
+  margin: auto;
 }
 
 .cart-image{
-  height:80vh;
   margin-top: 20px;
+  text-align: center;
+}
+.delete-icon{
+  color:red;
+  margin:5px;
+  padding-right: 7px;
+  font-size: x-large;
+  cursor: pointer;
+  border: none;
+  border-right: 1px solid beige;
+}
+.add-to-cart-icon{
+  color:blue;
+  margin:5px;
+  font-size: x-large;
+  cursor: pointer;
+  border: none;
+  /* border-left: 1px solid beige; */
+}
+.edit-product-icon{
+  color:blue;
+  margin:5px;
+  padding-right: 7px;
+  font-size: x-large;
+  cursor: pointer;
+  border:none;
+  border-right:1px solid beige
 }
 
 

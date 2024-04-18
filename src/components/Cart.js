@@ -1,4 +1,6 @@
 import cartImage from "../assets/emptyCart.png";
+import {FaTrash} from "react-icons/fa";
+
 const Cart = (props) =>{
     const{cartItems, deleteFromCarthandler, updateProductQuantity} = props;
     const payAmount  = () =>{
@@ -11,7 +13,7 @@ const Cart = (props) =>{
     const handleQuantityChange = (productId, newQuantity)=>{
         updateProductQuantity(productId, newQuantity);
     }
-    return (!cartItems.length)?(<div><img className="cart-image" src={cartImage} alt={"empty cart"}/></div>):
+    return (!cartItems.length)?(<div className="cart-image"><img  src={cartImage} alt={"empty cart"}/></div>):
     (   <div className="cart-section">
             <div className="added-product">
                 {cartItems.map((item) => (
@@ -26,13 +28,15 @@ const Cart = (props) =>{
                                 min={1} 
                                 value={item.quantity}
                                 onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))} ></input>
-                        <button className="delete-button" onClick={()=>deleteFromCarthandler(item.id)} >Remove Product</button>
+                            {/* <button className="delete-button" onClick={()=>deleteFromCarthandler(item.id)} >Remove Product</button> */}
+                            <FaTrash className="delete-icon" onClick={()=>deleteFromCarthandler(item.id)}  />
+                            
                     </div>
                 </div>
                 ))}
             </div>
             <div className="cart-summary">
-                <div className="card">
+                <div className="cart-summary-card">
                     <h1>Cart Summary</h1>
                     <div>Total Items:{totalQuantity}</div>
                     <div>Total Price: {totalPrice}</div>
