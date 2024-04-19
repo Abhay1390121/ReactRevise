@@ -1,10 +1,12 @@
 import ProductList from "../components/ProductList";
 import { connect } from "react-redux";
-import { addToCart, deleteProduct } from "../service/Actions/action";
+import { addToCart, deleteFromCart, deleteProduct, updateQuantity } from "../service/Actions/action";
 
 const mapDispatchToProps = (dispatch) => ({
   addToCartHandler: (data) => dispatch(addToCart(data)),
   removeProduct: (productId) => dispatch(deleteProduct(productId)),
+  removeProductFromCart : (productId) => dispatch(deleteFromCart(productId)),
+  updateQuantityFromList: (id, newquantity) =>dispatch(updateQuantity(id, newquantity)),
 });
 
 const mapStateToProps = (state) => ({

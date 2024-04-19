@@ -17,8 +17,9 @@ export const deleteProduct = (id)=>{
 }
 export const addToCart = (data) =>{
     return{
+
         type:ADD_TO_CART,
-        data:data
+        data:{...data, quantity:1}
     }
 }
 

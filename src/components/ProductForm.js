@@ -1,6 +1,7 @@
 import { reduxForm, Field} from "redux-form";
 import Select from "react-select";
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 
 // Validation part
@@ -25,51 +26,72 @@ import {useNavigate} from 'react-router-dom'
       ];
 
     // Custom component to render the input field
-    const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+    const renderField = ({ input, label, type, value, meta: { touched, error, warning } }) => (
         <div className="form-field">
           <label>{label}</label>
           <div className="form-field-input">
-            <input {...input} placeholder={label} type={type}/>
+          {/* {console.log("reder field", type)} */}
+            <input {...input} placeholder={label} type={type} value={value}/>
             {touched && ((error && <p className="error">!{error}</p>) || (warning && <p className="warning">{warning}</p>))}
           </div>
         </div>
-    )
+      )
 
     //custom component to render the select field.
     const renderFieldSelect = ({ input, label, meta: { touched, error, warning } }) =>(
         <div className="form-field">
-        <label>{label}</label>
-        <div className="form-field-input">
-        <Select {...input} 
-            options={Categories}
-            onChange={(value) => input.onChange(value)}
-            onBlur={() => input.onBlur(input.value)}
-        />
-          {touched && ((error && <p className="error">!{error}</p>) || (warning && <p className="warning">{warning}</p>))}
+          <label>{label}</label>
+            <div className="form-field-input">
+              <Select {...input} 
+                options={Categories}
+                onChange={(value) => input.onChange(value)}
+                onBlur={() => input.onBlur(input.value)}
+              />
+              {touched && ((error && <p className="error">!{error}</p>) || (warning && <p className="warning">{warning}</p>))}
+            </div>
         </div>
-      </div>
-    )
+      );
+
 
 let ProductForm= (props) =>{
-    const {handleSubmit, reset, submitFormHandler, change, submitting, pristine, invalid} = props;
 
-    //Using usenavigate Hooks for the navigation
+    const {handleSubmit, reset, submitFormHandler, change, submitting, pristine, invalid, initialValues,products } = props;
+    const [editMode, setEditMode] = useState(false);
+    const [formValue, setFormValue] = useState(initialValues);
+    // const {productName, description, price, category}=formValue;
+    // console.log(productName);
+
+    //Using useNavigate Hooks for the navigation
     const navigate = useNavigate();
+    const {id} = useParams();
+
+    useEffect(() =>{
+      if(id){
+        setEditMode(true);
+        const foundProduct = products.find(item => item.id === id);
+        setFormValue({...foundProduct});
+      }else{
+        setEditMode(false);
+        setFormValue({...initialValues});
+      }
+    },[id])
+
     
     const onSubmit = (values) =>{
         submitFormHandler(values);
         reset();
         change('id', generateRandomId())
         setTimeout(() => navigate("/product-list"), 200);
-    }
+      }
     
-      //This function will generate random values.
-      const generateRandomId = () => {
-        return Math.random().toString(20).slice(2, 8);
-      };
+    //This function will generate random values.
+    const generateRandomId = () => {
+      return Math.random().toString(20).slice(2, 8);
+    };
+
 
     return(
-        <form className="product-card" onSubmit={handleSubmit(onSubmit)} >
+      <form className="product-card" onSubmit={handleSubmit(onSubmit)} >
             <div className="card-body">
                 <h1>Create Product</h1>
                     <Field name="productName" 
@@ -97,7 +119,9 @@ let ProductForm= (props) =>{
                             validate={[required]}
                             />
                     <div className="form-button">
-                        <button className="success-button" type="submit" disabled={invalid || pristine || submitting}>Add Product</button>
+                        <button className="success-button" type="submit" disabled={invalid || pristine || submitting}>
+                          {!editMode ? "Add Product" : "Update Product"}
+                        </button>
                     </div>
                     
             </div>

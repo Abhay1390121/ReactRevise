@@ -12,12 +12,12 @@ const initialProductState = {
 
 // Reducer to do operation on cart: take two parameter initial state of store and action.
 // Based on action type it update and return updated state.
-export function cartItems(state=initialCartState, action){
+export function cartReducer(state=initialCartState, action){
     switch(action.type){
         case ADD_TO_CART:
             return {
                 ...state,
-                cartData: [...state.cartData, {...action.data, quantity:1}]
+                cartData: [...state.cartData, action.data]
             }
         case DELETE_FROM_CART:
             return{
@@ -34,8 +34,8 @@ export function cartItems(state=initialCartState, action){
                 )
               };
         }
-            default:
-                return state
+        default:
+            return state
     }
 }
 
@@ -51,10 +51,11 @@ export const productReducer = (state=initialProductState, action) =>{
         case DELETE_PRODUCT:
             return{
                 ...state,
-                product:state.product.filter((product)=>product.id !== action.id)
+                product:state.product.filter((product)=>product.id !== action.id),
+                // cartData: state.cartData.filter(items => items.id !== action.id),
             }; 
-            default:
-                return state
+        default:
+            return state
     }
 
 }
