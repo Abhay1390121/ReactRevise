@@ -19,11 +19,15 @@ function App() {
         <HeaderContainer/>
         <Routes>
             <Route
-              path="/" 
+              exact path="/" 
               element={ <ProductFormContainer />}
               />
             <Route
               path="/editProduct/:id" 
+              element={ <ProductFormContainer />}
+              />
+            <Route
+              path="/productInfo/:id" 
               element={ <ProductFormContainer />}
               />
             <Route

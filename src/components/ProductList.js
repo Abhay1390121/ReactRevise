@@ -27,12 +27,13 @@ const ProductList = (props) => {
       // Find the product form store based on the productId return that product
       const productToAdd = products.find((product) => product.id === productId);
       if(productToAdd){
-        //Checking wether product is already in cart or not.
+        //Checking wether product is already in cart or not If not in cart, Add product to cart.
         const isProductInCart = cartItems.some(product => product.id === productId);
         if(!isProductInCart){
           addToCartHandler(productToAdd);
           toast.success("Product Added to Cart");
         }
+        //If product is already in the cart then increase the quantity.
         else{
           const qunatityToUpdate = cartItems.find((items) => items.id ===productId);
           updateQuantityFromList(productId, qunatityToUpdate.quantity+1);
@@ -57,7 +58,12 @@ const ProductList = (props) => {
         <tbody>
           {products.map((product) => (
               <tr key={product.id}>
-                <td>{product?.productName}</td>
+              <td>
+
+                <Link to={`/productInfo/${product.id}`} className='product-info'>
+                {product?.productName}
+                </Link>
+              </td>
                 <td>${product?.price}</td>
                 <td>{product?.description}</td>
                 <td>{product?.category?.value}</td>

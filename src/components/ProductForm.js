@@ -1,6 +1,6 @@
 import { reduxForm, Field} from "redux-form";
 import Select from "react-select";
-import {useNavigate, useParams} from 'react-router-dom';
+import {useNavigate, useParams, useLocation} from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -27,23 +27,24 @@ import { toast } from "react-toastify";
       ];
 
     // Custom component to render the input field
-    const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+    const renderField = ({ input, label, type, fieldState, meta: { touched, error, warning } }) => (
         <div className="form-field">
           <label>{label}</label>
           <div className="form-field-input">
-            <input {...input} placeholder={label} type={type}/>
+            <input {...input} placeholder={label} type={type} disabled ={fieldState}/>
             {touched && ((error && <p className="error">!{error}</p>) || (warning && <p className="warning">{warning}</p>))}
           </div>
         </div>
       )
 
     //custom component to render the select field.
-    const renderFieldSelect = ({ input, label, meta: { touched, error, warning } }) =>(
+    const renderFieldSelect = ({ input, label, fieldState, meta: { touched, error, warning } }) =>(
         <div className="form-field">
           <label>{label}</label>
             <div className="form-field-input">
               <Select {...input} 
                 options={Categories}
+                isDisabled = {fieldState}
                 onChange={(value) => input.onChange(value)}
                 onBlur={() => input.onBlur(input.value)}
               />
@@ -63,6 +64,10 @@ let ProductForm= (props) =>{
     //Using useNavigate Hooks for the navigation
     const navigate = useNavigate();
     const {id} = useParams();
+    
+    //Using useLocation hook for accessing current URL.
+    const location = useLocation();
+    const isViewMode = location.pathname.includes('productInfo');
 
     useEffect(() =>{
       if(id){
@@ -100,35 +105,40 @@ let ProductForm= (props) =>{
     return(
       <form className="product-card" onSubmit={handleSubmit(onSubmit)} >
             <div className="card-body">
-                <h1>Create Product</h1>
+                    {!isViewMode? <h1>{!editMode ? "Create Product" :"Update Product"}</h1>:<h1>Product Info</h1>}                    
                     <Field name="productName" 
                             component={renderField} 
                             type="text" 
-                            label="Product Name"
+                            label=" Enter Product Name" 
+                            fieldState ={isViewMode}                 
                             validate={[required, whitespace, maxLength15]} 
                             />
                     <Field name="description" 
                             component={renderField} 
                             type="text" 
-                            label="Description"
+                            label="Enter Description"
+                            fieldState ={isViewMode} 
                             validate={[required, whitespace, maxLength50]} 
                             />
                     <Field name="price" 
                             component={renderField} 
                             type="number" min={0} 
-                            label="Price"
+                            label="Enter Price"
+                            fieldState ={isViewMode} 
                             validate={[required, minPrice ]}
                             />
                     <Field
                             name="category"
                             label="Category"
+                            fieldState ={isViewMode} 
                             component={renderFieldSelect}
                             validate={[required]}
                             />
                     <div className="form-button">
-                        <button className="success-button" type="submit" disabled={invalid || pristine || submitting}>
+                        {!isViewMode? <button className="success-button" type="submit" disabled={invalid || pristine || submitting}>
                           {!editMode ? "Add Product" : "Update Product"}
-                        </button>
+                        </button>:<></> }
+                        
                     </div>
                     
             </div>
