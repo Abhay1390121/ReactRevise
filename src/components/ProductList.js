@@ -62,10 +62,9 @@ const ProductList = (props) => {
                 <td>{product?.description}</td>
                 <td>{product?.category?.value}</td>
                 <td>
-                <Link to={`/editProduct/${product.id}`}>
-                  <FaEdit className='edit-product-icon'/>
-                </Link>
-
+                  <Link to={`/editProduct/${product.id}`}>
+                    <FaEdit className='edit-product-icon'/>
+                  </Link>
                   <FaTrash className='delete-icon' onClick={()=>handleDelete(product.id)}/>
                   <FaCartPlus className='add-to-cart-icon' onClick={()=> handleAddToCart(product.id)}/>
                 </td>

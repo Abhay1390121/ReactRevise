@@ -2,6 +2,7 @@ import { reduxForm, Field} from "redux-form";
 import Select from "react-select";
 import {useNavigate, useParams} from 'react-router-dom';
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 
 // Validation part
@@ -26,12 +27,11 @@ import { useEffect, useState } from "react";
       ];
 
     // Custom component to render the input field
-    const renderField = ({ input, label, type, value, meta: { touched, error, warning } }) => (
+    const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
         <div className="form-field">
           <label>{label}</label>
           <div className="form-field-input">
-          {/* {console.log("reder field", type)} */}
-            <input {...input} placeholder={label} type={type} value={value}/>
+            <input {...input} placeholder={label} type={type}/>
             {touched && ((error && <p className="error">!{error}</p>) || (warning && <p className="warning">{warning}</p>))}
           </div>
         </div>
@@ -55,11 +55,10 @@ import { useEffect, useState } from "react";
 
 let ProductForm= (props) =>{
 
-    const {handleSubmit, reset, submitFormHandler, change, submitting, pristine, invalid, initialValues,products } = props;
+    const {handleSubmit, reset, submitFormHandler, change, submitting, pristine,
+       invalid, initialize, products, initialValues,updateProductHandler } = props;
     const [editMode, setEditMode] = useState(false);
-    const [formValue, setFormValue] = useState(initialValues);
-    // const {productName, description, price, category}=formValue;
-    // console.log(productName);
+    
 
     //Using useNavigate Hooks for the navigation
     const navigate = useNavigate();
@@ -69,19 +68,27 @@ let ProductForm= (props) =>{
       if(id){
         setEditMode(true);
         const foundProduct = products.find(item => item.id === id);
-        setFormValue({...foundProduct});
+        initialize({...foundProduct})
+        
       }else{
         setEditMode(false);
-        setFormValue({...initialValues});
+        initialize({...initialValues})
       }
-    },[id])
+    },[id] )
 
     
     const onSubmit = (values) =>{
+      if(!editMode){
         submitFormHandler(values);
         reset();
         change('id', generateRandomId())
-        setTimeout(() => navigate("/product-list"), 200);
+        toast.success("Product Added Successfully!")
+        setTimeout(() => navigate("/product-list"), 500);
+      }else{
+        updateProductHandler(id, values);
+        toast.success("Product Updated Successfully!")
+        setTimeout(() => navigate("/product-list"), 500);
+      }
       }
     
     //This function will generate random values.

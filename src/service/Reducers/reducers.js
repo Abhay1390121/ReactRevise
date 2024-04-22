@@ -1,4 +1,4 @@
-import {ADD_TO_CART, ADD_PRODUCT, DELETE_PRODUCT, DELETE_FROM_CART, UPDATE_QUANTITY} from "../constants"
+import {ADD_TO_CART, ADD_PRODUCT, DELETE_PRODUCT, DELETE_FROM_CART, UPDATE_QUANTITY, UPDATE_PRODUCT} from "../constants"
 
 //initial state of cartdata in redux store.
 const initialCartState={
@@ -52,8 +52,17 @@ export const productReducer = (state=initialProductState, action) =>{
             return{
                 ...state,
                 product:state.product.filter((product)=>product.id !== action.id),
-                // cartData: state.cartData.filter(items => items.id !== action.id),
             }; 
+        case UPDATE_PRODUCT:
+            return{
+                ...state,
+                product: state.product.map(item =>
+                    item.id === action.id
+                      ? { ...action.data}
+                      : item
+                    )
+
+            }
         default:
             return state
     }
